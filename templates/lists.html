@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block header %}
+        <h2>{% block title %}Lists{% endblock %}</h2>
+{% endblock %}
+{% block content %}
+<ul>
+{% for list in lists %}
+<li>
+        <input
+                type="checkbox"
+                disabled=disabled
+                data-id="{{ list.id }}"
+                id="{{ list.id }}"
+                {% if list.complete %} checked {%endif%}
+        >
+        <label for={{ list.id }}>
+                <a href="{{ url_for('get_list_todos', list_id=list.id) }}">
+                        {{ list.name }}</a>
+        </label>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
